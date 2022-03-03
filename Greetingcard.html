@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Canvas</title>
+
+</head>
+
+<body>  
+
+    <canvas id="mmyCanvas"   width="500" height="500" ></canvas>
+
+    <script>
+
+        var canvas = document.getElementById('mmyCanvas'),
+
+        ctx = canvas.getContext('2d'),
+
+        font = '14px sans-serif',
+
+        hasInput = false;
+
+ 
+
+        canvas.onclick = function(e) {
+
+        if (hasInput) return;
+
+        addInput(e.clientX, e.clientY);
+
+        }
+
+ 
+
+//Function to dynamically add an input box:
+
+    function addInput(x, y) {
+
+ 
+
+    var input = document.createElement('input');
+
+ 
+
+    input.type = 'text';
+
+    input.style.position = 'fixed';
+
+    input.style.left = (x - 4) + 'px';
+
+    input.style.top = (y - 4) + 'px';
+
+    input.onkeydown = handleEnter;
+
+    document.body.appendChild(input);
+
+    input.focus();
+
+    hasInput = true;
+
+    }
+
+ 
+
+//Key handler for input box:
+
+    function handleEnter(e) {
+
+    var keyCode = e.keyCode;
+
+    if (keyCode === 13) {
+
+    drawText(this.value, parseInt(this.style.left, 10), parseInt(this.style.top, 10));
+
+    document.body.removeChild(this);
+
+    hasInput = false;
+
+    }
+
+}
+
+ 
+
+//Draw the text onto canvas:
+
+function drawText(txt, x, y) {
+
+ctx.textBaseline = 'top';
+
+ctx.textAlign = 'left';
+
+ctx.font = font;
+
+ctx.fillText(txt, x - 4, y - 4);
+
+}
+
+</script>
+
+<p>Image</p>
+
+        <script>
+
+            var image=new Image();
+
+            image.src="https://rukminim1.flixcart.com/image/416/416/jelpg280/card/y/u/t/1-i-love-you-happy-birthday-greeting-card-greeting-alwaysgift-original-imaf397fwnhmcst9.jpeg?q=70";
+
+            ctx.scale(1,1);
+
+            ctx.translate(0,0);
+
+            image.addEventListener("load",function(evt){
+
+            ctx.drawImage(evt.target,0,0);
+
+            });
+
+        </script>
+
+    <hr>
+
+    <input type="datetime-local">
+
+    <lable>Date of Birth</lable>
+
+    <hr>
+
+ 
+
+</body>
+
+</html>
+
+ 
